@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+<h2>Your Matches</h2>
+<p>These people have liked you back!</p>
+
+<div class="user-list">
+	{% for match in matches %}
+	<div class="user-card">
+		<img
+			src="{{ url_for('uploaded_file', filename=match.profile_picture) }}"
+			alt="Profile Picture"
+			class="user-pic-thumb"
+		/>
+		<h3>{{ match.username }}</h3>
+		<p><strong>Gender:</strong> {{ match.gender.capitalize() }}</p>
+		<p><strong>Bio:</strong> {{ match.bio or 'No bio yet.' }}</p>
+		<div class="card-actions">
+			<a
+				href="{{ url_for('messages', recipient_id=match.id) }}"
+				class="button-message"
+				>Send Message</a
+			>
+		</div>
+	</div>
+	{% else %}
+	<p>You have no matches yet. Keep liking people!</p>
+	{% endfor %}
+</div>
+{% endblock %}

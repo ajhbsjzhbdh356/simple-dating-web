@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block content %}
+<h2>Your Messages</h2>
+<div class="messaging-layout">
+	<div class="conversation-list">
+		<h3>Conversations</h3>
+		<ul>
+			{% for conv_user in conversations %}
+			<li
+				class="{% if active_recipient and active_recipient.id == conv_user.id %}active{% endif %}"
+			>
+				<a href="{{ url_for('messages', recipient_id=conv_user.id) }}">
+					<img
+						src="{{ url_for('uploaded_file', filename=conv_user.profile_picture) }}"
+						alt="Pic"
+						class="convo-pic"
+					/>
+					{{ conv_user.username }}
+				</a>
+			</li>
+			{% else %}
+			<li>No conversations yet.</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="chat-window">
+		{% if active_recipient %}
+		<h3>Chat with {{ active_recipient.username }}</h3>
+		<div class="message-history">
+			{% for message in chat_history %}
+			<div
+				class="message {% if message.sender_id == current_user.id %}sent{% else %}received{% endif %}"
+			>
+				<p>{{ message.body }}</p>
+				<span class="timestamp"
+					>{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</span
+				>
+			</div>
+			{% else %}
+			<p>This is the beginning of your conversation. Say hello!</p>
+			{% endfor %}
+		</div>
+		<form
+			method="POST"
+			action="{{ url_for('messages', recipient_id=active_recipient.id) }}"
+		>
+			<textarea
+				name="body"
+				placeholder="Type your message..."
+				required
+			></textarea>
+			<button type="submit">Send</button>
+		</form>
+		{% else %}
+		<h3>Select a conversation to start chatting.</h3>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

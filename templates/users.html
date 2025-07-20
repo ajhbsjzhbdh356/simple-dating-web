@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Find Your Match</h2>
+
+    <form method="GET" action="{{ url_for('users') }}" class="search-form">
+        <input type="text" name="bio" placeholder="Search in bio..." value="{{ request.args.get('bio', '') }}">
+        <select name="gender">
+            <option value="">Any Gender</option>
+            <option value="male" {% if request.args.get('gender') == 'male' %}selected{% endif %}>Male</option>
+            <option value="female" {% if request.args.get('gender') == 'female' %}selected{% endif %}>Female</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="user-list">
+        {% for user in users %}
+            <div class="user-card">
+                <img src="{{ url_for('uploaded_file', filename=user.profile_picture) }}" alt="Profile Picture" class="user-pic-thumb">
+                <h3>{{ user.username }}</h3>
+                <p><strong>Gender:</strong> {{ user.gender.capitalize() }}</p>
+                <p><strong>Bio:</strong> {{ user.bio or 'No bio yet.' }}</p>
+                <div class="card-actions">
+                    {% if not current_user.has_liked(user) %}
+                        <a href="{{ url_for('like', user_id=user.id) }}" class="button-like">Like</a>
+                    {% else %}
+                        <span>You liked this user</span>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <p>No users found with the current filters.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

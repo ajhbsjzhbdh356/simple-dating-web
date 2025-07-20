@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block content %}
+<h2>Welcome, {{ user.username }}!</h2>
+
+<div class="profile-details">
+	{% if user.profile_picture %}
+	<img
+		src="{{ url_for('uploaded_file', filename=user.profile_picture) }}"
+		alt="Profile Picture"
+		class="profile-pic"
+	/>
+	{% endif %}
+	<p><strong>Gender:</strong> {{ user.gender.capitalize() }}</p>
+</div>
+
+<form method="POST" action="/profile" enctype="multipart/form-data">
+	<label for="bio">Your Bio:</label>
+	<textarea id="bio" name="bio" rows="4">{{ user.bio or '' }}</textarea>
+
+	<label for="profile_picture">Update Profile Picture:</label>
+	<input type="file" id="profile_picture" name="profile_picture" />
+
+	<button type="submit">Update Profile</button>
+</form>
+{% endblock %}

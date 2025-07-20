@@ -1,0 +1,203 @@
+/* --- General & Layout --- */
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	background-color: #f4f4f4;
+}
+.container {
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+	padding: 20px 0;
+}
+
+/* --- Navigation --- */
+nav {
+	background: #333;
+	color: #fff;
+	padding: 1rem;
+	text-align: center;
+}
+nav a {
+	color: #fff;
+	text-decoration: none;
+	padding: 0 15px;
+}
+
+h2,
+h3 {
+	color: #333;
+}
+
+/* --- Forms --- */
+form {
+	background: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+form label {
+	display: block;
+	margin-bottom: 5px;
+}
+form input,
+form select,
+form textarea,
+form button {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+}
+form button {
+	background: #333;
+	color: #fff;
+	border: 0;
+	cursor: pointer;
+}
+.search-form {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.search-form input,
+.search-form select {
+	width: auto;
+	flex-grow: 1;
+}
+
+/* --- Alerts/Flashes --- */
+.flashes {
+	list-style: none;
+	padding: 10px;
+	background: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+/* --- Profile --- */
+.profile-pic {
+	max-width: 150px;
+	border-radius: 50%;
+	margin-bottom: 20px;
+}
+
+/* --- User Cards --- */
+.user-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+}
+.user-card {
+	background: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+.user-pic-thumb {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.card-actions {
+	margin-top: 15px;
+}
+.card-actions a {
+	text-decoration: none;
+	color: white;
+	padding: 8px 15px;
+	border-radius: 5px;
+	display: inline-block;
+}
+.button-like {
+	background-color: #007bff;
+}
+.button-message {
+	background-color: #28a745;
+}
+
+/* --- Messaging --- */
+.messaging-layout {
+	display: flex;
+	gap: 20px;
+	background: #fff;
+	padding: 20px;
+	border-radius: 5px;
+}
+.conversation-list {
+	flex: 1;
+	border-right: 1px solid #ddd;
+	padding-right: 20px;
+}
+.conversation-list h3 {
+	margin-top: 0;
+}
+.conversation-list ul {
+	list-style: none;
+	padding: 0;
+}
+.conversation-list li a {
+	text-decoration: none;
+	color: #333;
+	display: block;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.conversation-list li a:hover {
+	background-color: #f4f4f4;
+}
+.conversation-list li.active a {
+	background-color: #007bff;
+	color: white;
+}
+.convo-pic {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.chat-window {
+	flex: 3;
+}
+.chat-window h3 {
+	margin-top: 0;
+}
+.message-history {
+	height: 400px;
+	overflow-y: auto;
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+}
+.message {
+	padding: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	max-width: 70%;
+}
+.message .timestamp {
+	font-size: 0.8em;
+	color: #666;
+	display: block;
+	margin-top: 5px;
+}
+.message.sent {
+	background-color: #dcf8c6;
+	align-self: flex-end;
+}
+.message.received {
+	background-color: #f1f0f0;
+	align-self: flex-start;
+}
